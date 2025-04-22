@@ -59,38 +59,5 @@
         }
       }
     }
-
-    .cart {
-      position: relative;
-
-      .cart-button {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-
-        .cart-icon {
-          width: 55px;
-          height: 55px;
-        }
-      }
-
-      .cart-count {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        background-color: white;
-        color: #35b8be;
-        font-size: 12px;
-        font-weight: bold;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-      }
-    }
   }
 }
