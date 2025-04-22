@@ -1,42 +1,69 @@
+import React, { Component } from 'react';
 import './MenuContent.css';
 import { Button } from '../Button/Button';
 import { ItemList } from '../ItemList/ItemList';
 
-export const MenuContent = () => {
-  const menuItems = [
-    { name: 'Burger Dreams', price: '$9.20 USD', img: 'burger1.png' },
-    { name: 'Burger Waldo', price: '$10.00 USD', img: 'burger2.png' },
-    { name: 'Burger Cali', price: '$8.00 USD', img: 'burger3.png' },
-    { name: 'Burger Bacon Buddy', price: '$9.99 USD', img: 'burger4.png' },
-    { name: 'Burger Spicy', price: '$9.20 USD', img: 'burger5.png' },
-    { name: 'Burger Classic', price: '$8.00 USD', img: 'burger6.png' },
-  ];
+export class MenuContent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menuItems: [],
+      visibleItems: 6,
+    };
+  }
 
-  return (
-    <div className="menu-wrapper">
-      <section className="menu-section">
-        <div className="menu-description">
-          <h2>Browse our menu</h2>
-          <p>
-            Use our menu to place an order online, or
-            <span className="tooltip">
-              phone
-              <span className="tooltip-text">+370(677)71-4851</span>
-            </span>
-            our store to place a pickup order. Fast and fresh food.
-          </p>
-        </div>
+  componentDidMount() {
+    fetch('https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals')
+      .then((res) => res.json())
+      .then((data) => this.setState({ menuItems: data }))
+      .catch((err) => console.error(err));
+  }
 
-        <div className="menu-buttons">
-          <Button>Desert</Button>
-          <Button>Dinner</Button>
-          <Button>Breakfast</Button>
-        </div>
+  handleSeeMore = () => {
+    this.setState((prevState) => ({
+      visibleItems: prevState.visibleItems + 6,
+    }));
+  };
 
-        <ItemList items={menuItems} />
+  render() {
+    const { menuItems, visibleItems } = this.state;
+    const { addItem } = this.props;
 
-        <Button variant="see-more">See more</Button>
-      </section>
-    </div>
-  );
-};
+    const categories = [...new Set(menuItems.map((item) => item.category))];
+
+    return (
+      <div className="menu-wrapper">
+        <section className="menu-section">
+          <div className="menu-description">
+            <h2>Browse our menu</h2>
+            <p>
+              Use our menu to place an order online, or
+              <span className="tooltip">
+                phone
+                <span className="tooltip-text">+370(677)71-4851</span>
+              </span>
+              our store to place a pickup order. Fast and fresh food.
+            </p>
+          </div>
+
+          <div className="menu-buttons">
+            {categories.map((cat) => (
+              <Button key={cat}>{cat}</Button>
+            ))}
+          </div>
+
+          <ItemList
+            items={menuItems.slice(0, visibleItems)}
+            addItem={addItem}
+          />
+
+          {visibleItems < menuItems.length && (
+            <Button variant="see-more" onClick={this.handleSeeMore}>
+              See more
+            </Button>
+          )}
+        </section>
+      </div>
+    );
+  }
+}

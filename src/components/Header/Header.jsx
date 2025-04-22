@@ -1,30 +1,27 @@
-import './Header.css'
+import React, { Component } from 'react';
+import './Header.css';
+import { Cart } from '../Cart/Cart';
+import { LogoIcon } from '../../assets/icons/icons';
 
-export const Header = () => {
-  return (
-    <header className="header-container">
-      <div className="logo-container logo-icon">
-        <img src="..\src\assets\Logo.svg"/>
-      </div>
 
-      <div className="header-content">
-        <nav className="nav-list">
-          <a href="#" className="nav-link">Home</a>
-          <a href="#" className="nav-link">Menu</a>
-          <a href="#" className="nav-link">Company</a>
-          <a href="#" className="nav-link">Login</a>
-        </nav>
+export class Header extends Component {
+  render() {
+    const { cartCount } = this.props;
 
-        <div className="cart">
-          <button className="cart-button">
-          <img className='cart-icon' src='..\src\assets\Frame.svg'></img>
-          </button>
-          <span className="cart-count">
-            0
-          </span>
+    return (
+      <header className="header-container">
+        <LogoIcon className="logo-container logo-icon" />
+
+        <div className="header-content">
+          <nav className="nav-list">
+            <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Home</a>
+            <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Menu</a>
+            <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Company</a>
+            <a href="#" className="nav-link" onClick={(e) => e.preventDefault()}>Login</a>
+          </nav>
+          <Cart cartCount={cartCount} />
         </div>
-      </div>
-      
-    </header>
-  );
-};
+      </header>
+    );
+  }
+}
