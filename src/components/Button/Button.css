@@ -1,0 +1,37 @@
+.btn {
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid rgba(97, 114, 131, 0.2);
+    background-color: #f5fafa;
+    color: #333;
+    transition: background 0.3s ease;
+  
+    &:hover {
+      background-color: #35b8be;
+      color: #fff;
+      border-color: transparent;
+    }
+  
+    &.add {
+      padding: 9px 27px;
+      border-radius: 6px;
+      background-color: #35b8be;
+      color: white;
+      border: none;
+      line-height: 27px;
+      letter-spacing: 0.36px;
+    }
+  
+    &.see-more {
+      margin-top: 65px;
+      background-color: #35b8be;
+      color: white;
+      padding: 16px 32px;
+      font-size: 1.06rem;
+      border: none;
+    }
+  }
+  
