@@ -35,7 +35,6 @@ export class MenuPage extends Component {
 
   getTotalCount = () => {
     const { cartItems } = this.state;
-    console.log(cartItems);
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
