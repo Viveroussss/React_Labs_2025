@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import './MenuContent.css';
 import { Button } from '../Button/Button';
 import { ItemList } from '../ItemList/ItemList';
-import { fetchMenuItems } from '../../services/api';
+import { fetchMenuItems } from '../../services/api-meals';
 
 export const MenuContent = ({ addItem }) => {
   const [menuItems, setMenuItems] = useState([]);

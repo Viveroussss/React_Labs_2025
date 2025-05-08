@@ -1,0 +1,146 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5fafa;
+    margin: 0;
+    padding: 0;
+    color: #546285;
+  }
+
+  p, h1 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hero {
+    background-color: #ffffff;
+    padding: 100px 120px 140px;
+    display: flex;
+    justify-content: center;
+    background-image: url('../../assets/BGShape.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .hero-container {
+    max-width: 1440px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .hero-text {
+    flex: 1;
+    min-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .hero-text h1 {
+    font-size: 3.76rem;
+    line-height: 60px;
+    color: #08090a;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+  }
+  
+  .hero-text h1 span {
+    color: #35B8BE;
+  }
+  
+  .hero-text p {
+    font-size: 1.14rem;
+    line-height: 24px;
+    color:#546285;
+    max-width: 470px;
+    letter-spacing: 0.36px;
+    margin-bottom: 53px;
+  }
+
+  .description-text {
+    margin-top: 27px;
+  }
+  
+  .hero-text .btn {
+    background-color: #35B8BE;
+    color: white;
+    padding: 20px 35px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .hero-text .btn:hover {
+    background-color: #2abfbd;
+  }
+  
+  .trustpilot {
+    margin-top: 30px;
+    font-size: 0.94rem;
+    color: #546285;
+    display: flex;
+    gap: 10px; /* add this */
+    flex-direction: column;
+  }
+  
+  .trustpilot a {
+    color: #35B8BE;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .hero-text .trustpilot .reviews-text p {
+    margin: 0;
+  }
+  
+  
+  
+  .hero-image {
+    flex: 1;
+    position: relative;
+    min-width: 300px;
+  }
+  
+  .hero-image img.main {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    max-height: 400px;
+  }
+  
+  .badge-group {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    display: flex;
+    gap: 12px;
+  }
+  
+  .badge-group img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    padding: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .badge-group {
+      position: static;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+  }
+  
