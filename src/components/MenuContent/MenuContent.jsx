@@ -1,42 +1,29 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import './MenuContent.css';
 import { Button } from '../Button/Button';
 import { ItemList } from '../ItemList/ItemList';
-import { fetchMenuItems } from '../../services/api-meals';
+import useFetch from '../../hooks/useFetch';
+
+const DEFAULT_CATEGORY = 'Dessert';
+const INITIAL_VISIBLE_ITEMS = 6;
+const VISIBLE_ITEMS_INCREMENT = 6;
 
 export const MenuContent = ({ addItem }) => {
-  const [menuItems, setMenuItems] = useState([]);
-  const [visibleItems, setVisibleItems] = useState(6);
-  const [filteredCategory, setFilteredCategory] = useState('Dessert');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const getItems = async () => {
-      try {
-        const data = await fetchMenuItems();
-        setMenuItems(data);
-      } catch (err) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getItems();
-  }, []);
+  const [filteredCategory, setFilteredCategory] = useState(DEFAULT_CATEGORY);
+  const [visibleItems, setVisibleItems] = useState(INITIAL_VISIBLE_ITEMS);
+  const { data: menuItems, loading, error } = useFetch('https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals');
 
   const handleSeeMore = () => {
-    setVisibleItems((prev) => prev + 6);
+    setVisibleItems((prev) => prev + VISIBLE_ITEMS_INCREMENT);
   };
 
   const handleFilterChange = (category) => {
     setFilteredCategory(category);
-    setVisibleItems(6);
+    setVisibleItems(INITIAL_VISIBLE_ITEMS);
   };
 
-  const filteredItems = menuItems.filter((item) => item.category === filteredCategory);
-  const categories = useMemo(() => [...new Set(menuItems.map((item) => item.category))], [menuItems]);
+  const filteredItems = menuItems?.filter((item) => item.category === filteredCategory) || [];
+  const categories = useMemo(() => [...new Set(menuItems?.map((item) => item.category) || [])], [menuItems]);
 
   if (loading) return <p>Loading menu...</p>;
   if (error) return <p>Failed to load menu items.</p>;
@@ -68,10 +55,7 @@ export const MenuContent = ({ addItem }) => {
           ))}
         </div>
 
-        <ItemList
-          items={filteredItems.slice(0, visibleItems)}
-          addItem={addItem}
-        />
+        <ItemList items={filteredItems.slice(0, visibleItems)} addItem={addItem} />
 
         {visibleItems < filteredItems.length && (
           <Button variant="see-more" onClick={handleSeeMore}>

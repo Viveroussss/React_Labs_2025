@@ -26,10 +26,10 @@ const useFetch = (url, options = {}) => {
                     timestamp: new Date().toISOString(),
                 };
                 
-                // Store in local storage
                 const logs = JSON.parse(localStorage.getItem('fetchLogs')) || [];
                 logs.push(logEntry);
                 localStorage.setItem('fetchLogs', JSON.stringify(logs));
+                window.dispatchEvent(new Event('fetchLogsUpdated'));
             } catch (err) {
                 setError(err);
             } finally {
