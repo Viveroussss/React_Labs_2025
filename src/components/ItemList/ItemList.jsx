@@ -34,10 +34,13 @@ export const ItemList = ({ items, addItem }) => {
               onSubmit={(e) => handleSubmit(e, { id, meal, price })}
             >
               <input
+                id={`quantity-${id}`}
+                name={`quantity-${id}`}
                 type="number"
                 min="1"
                 value={quantities[id] || 1}
                 onChange={(e) => handleQuantityChange(id, e.target.value)}
+                autoComplete="off"
               />
               <Button variant="add" type="submit">
                 Add to cart
