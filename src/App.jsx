@@ -1,12 +1,8 @@
-import { MenuPage } from './pages/MenuPage/MenuPage';
+import React from 'react';
+import { HomePage } from './pages/HomePage/HomePage';
 
-function App() {
+const App = () => {
+  return <HomePage />;
+};
 
-  return (
-    <>
-      <MenuPage></MenuPage>
-    </>
-  )
-}
-
-export default App
+export default App;
