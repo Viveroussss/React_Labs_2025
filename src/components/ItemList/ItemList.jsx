@@ -1,21 +1,51 @@
-import { Button } from "../Button/Button";
+import React, { useState } from 'react';
+import { Button } from '../Button/Button';
+import './ItemList.css';
 
-export const ItemList = ({ items }) => {
+export const ItemList = ({ items, addItem }) => {
+  const [quantities, setQuantities] = useState({});
+
+  const handleQuantityChange = (id, value) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e, item) => {
+    e.preventDefault();
+    const quantity = parseInt(quantities[item.id] || 1, 10);
+    addItem(item, quantity);
+  };
+
   return (
     <div className="menu-grid">
-      {items.map(({ name, price, img }) => (
-        <div className="menu-card" key={name}>
-          <img src={`./src/assets/${img}`} alt={name} />
+      {items.map(({ id, meal, price, img, instructions }) => (
+        <div className="menu-card" key={id}>
+          <img src={img} alt={meal} />
           <div className="card-info">
             <div className="title-row">
-              <h4>{name}</h4>
-              <span>{price}</span>
+              <h4>{meal}</h4>
+              <span>${price}</span>
             </div>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <div className="order-row">
-              <input type="number" value="1" min="1" />
-              <Button variant="add">Add to cart</Button>
-            </div>
+            <p className="card-description">{instructions}</p>
+            <form
+              className="order-row"
+              onSubmit={(e) => handleSubmit(e, { id, meal, price })}
+            >
+              <input
+                id={`quantity-${id}`}
+                name={`quantity-${id}`}
+                type="number"
+                min="1"
+                value={quantities[id] || 1}
+                onChange={(e) => handleQuantityChange(id, e.target.value)}
+                autoComplete="off"
+              />
+              <Button variant="add" type="submit">
+                Add to cart
+              </Button>
+            </form>
           </div>
         </div>
       ))}

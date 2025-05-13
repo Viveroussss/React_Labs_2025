@@ -1,9 +1,10 @@
-import './Button.css'
+import './Button.css';
+import React from 'react';
 
-export const Button = ({ children, variant = 'default', ...props }) => {
-    return (
-      <button className={`btn ${variant}`} {...props}>
-        {children}
-      </button>
-    );
-  };
+export const Button = ({ children, variant = 'default', className = '', ...props }) => {
+  return (
+    <button className={`btn ${variant} ${className}`} {...props}>
+      {children}
+    </button>
+  );
+};
