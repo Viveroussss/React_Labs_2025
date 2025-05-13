@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Footer.css';
-import { InstagramIcon } from '../../assets/icons/icons';
-import { TwitterIcon } from '../../assets/icons/icons';
-import { YoutubeIcon } from '../../assets/icons/icons';
-import { LogoIcon } from '../../assets/icons/icons';
+import { InstagramIcon, TwitterIcon, YoutubeIcon, LogoIcon } from '../../assets/icons/icons';
 
 const footerLinks = [
   {
@@ -32,45 +29,41 @@ const footerLinks = [
   },
 ];
 
-export class Footer extends Component {
-  render() {
-    return (
-      <footer className="site-footer">
-        <div className="footer-container">
-          <div className="logo-col">
-            <LogoIcon className="footer-logo" />
-            <p className="footer-description">
-              Takeaway & Delivery template <span className="footer-description-span">for small - medium businesses.</span>
-            </p>
-          </div>
-
-          <div className="footer-links">
-            {footerLinks.map(({ title, links }) => (
-              <div className="footer-col" key={title}>
-                <h4 className="column-header">{title}</h4>
-                <ul>
-                  {links.map(({ name, href }) => (
-                    <li key={name}>
-                      <a href={href}>{name}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+export const Footer = () => {
+  return (
+    <footer className="site-footer">
+      <div className="footer-container">
+        <div className="logo-col">
+          <LogoIcon className="footer-logo" />
+          <p className="footer-description">
+            Takeaway & Delivery template <span className="footer-description-span">for small - medium businesses.</span>
+          </p>
         </div>
 
-        <div className="footer-bottom">
-          <p>
-            Built by <a href="#">Flowbase</a> · Powered by <a href="#">Webflow</a>
-          </p>
-          <div className="footer-socials">
-            <a href="#"><InstagramIcon className="social-icon" /></a>
-            <a href="#"><TwitterIcon className="social-icon" /></a>
-            <a href="#"><YoutubeIcon className="social-icon" /></a>
-          </div>
+        <div className="footer-links">
+          {footerLinks.map(({ title, links }) => (
+            <div className="footer-col" key={title}>
+              <h4 className="column-header">{title}</h4>
+              <ul>
+                {links.map(({ name, href }) => (
+                  <li key={name}>
+                    <a href={href}>{name}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+      <div className="footer-bottom">
+        <p>
+          Built by <a href="#">Flowbase</a> · Powered by <a href="#">Webflow</a>
+        </p>
+        <div className="footer-socials">
+          <a href="#"><InstagramIcon className="social-icon" /></a>
+          <a href="#"><TwitterIcon className="social-icon" /></a>
+          <a href="#"><YoutubeIcon className="social-icon" /></a>
         </div>
       </footer>
     );
   }
-}

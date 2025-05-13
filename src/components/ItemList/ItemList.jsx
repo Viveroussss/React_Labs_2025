@@ -1,49 +1,51 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Button } from '../Button/Button';
 import './ItemList.css';
 
-export class ItemList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+export const ItemList = ({ items, addItem }) => {
+  const [quantities, setQuantities] = useState({});
 
-  handleQuantityChange = (id, value) => {
-    this.setState({ [id]: value });
+  const handleQuantityChange = (id, value) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
   };
 
-  getQuantity = (id) => {
-    return this.state[id] || 1;
+  const handleSubmit = (e, item) => {
+    e.preventDefault();
+    const quantity = parseInt(quantities[item.id] || 1, 10);
+    addItem(item, quantity);
   };
 
-  render() {
-    const { items, addItem } = this.props;
+  return (
+    <div className="menu-grid">
+      {items.map(({ id, meal, price, img, instructions }) => (
+        <div className="menu-card" key={id}>
+          <img src={img} alt={meal} />
+          <div className="card-info">
+            <div className="title-row">
+              <h4>{meal}</h4>
+              <span>${price}</span>
 
-    return (
-      <div className="menu-grid">
-        {items.map(({ id, meal, price, img, instructions }) => (
-          <div className="menu-card" key={id}>
-            <img src={img} alt={meal} />
-            <div className="card-info">
-              <div className="title-row">
-                <h4>{meal}</h4>
-                <span>${price}</span>
-              </div>
-              <p className='card-description'>{instructions}</p>
-              <form className="order-row" onSubmit={(e) => {
-                e.preventDefault();
-                const quantity = parseInt(e.target[0].value);
-                addItem({ id, meal, price }, quantity);
-              }}>
-              <input type="number" min="1" defaultValue="1" />
+            </div>
+            <p className="card-description">{instructions}</p>
+            <form
+              className="order-row"
+              onSubmit={(e) => handleSubmit(e, { id, meal, price })}
+            >
+              <input
+                type="number"
+                min="1"
+                value={quantities[id] || 1}
+                onChange={(e) => handleQuantityChange(id, e.target.value)}
+              />
               <Button variant="add" type="submit">
                 Add to cart
               </Button>
-              </form>
-            </div>
+            </form>
           </div>
         ))}
       </div>
     );
-  }
-}
+  };

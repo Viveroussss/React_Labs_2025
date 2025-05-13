@@ -1,69 +1,84 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './MenuContent.css';
 import { Button } from '../Button/Button';
 import { ItemList } from '../ItemList/ItemList';
+import { fetchMenuItems } from '../../services/api';
 
-export class MenuContent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      menuItems: [],
-      visibleItems: 6,
+export const MenuContent = ({ addItem }) => {
+  const [menuItems, setMenuItems] = useState([]);
+  const [visibleItems, setVisibleItems] = useState(6);
+  const [filteredCategory, setFilteredCategory] = useState('Dessert');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const getItems = async () => {
+      try {
+        const data = await fetchMenuItems();
+        setMenuItems(data);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
-  }
 
-  componentDidMount() {
-    fetch('https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals')
-      .then((res) => res.json())
-      .then((data) => this.setState({ menuItems: data }))
-      .catch((err) => console.error(err));
-  }
+    getItems();
+  }, []);
 
-  handleSeeMore = () => {
-    this.setState((prevState) => ({
-      visibleItems: prevState.visibleItems + 6,
-    }));
+  const handleSeeMore = () => {
+    setVisibleItems((prev) => prev + 6);
   };
 
-  render() {
-    const { menuItems, visibleItems } = this.state;
-    const { addItem } = this.props;
+  const handleFilterChange = (category) => {
+    setFilteredCategory(category);
+    setVisibleItems(6);
+  };
 
-    const categories = [...new Set(menuItems.map((item) => item.category))];
+  const filteredItems = menuItems.filter((item) => item.category === filteredCategory);
+  const categories = useMemo(() => [...new Set(menuItems.map((item) => item.category))], [menuItems]);
 
-    return (
-      <div className="menu-wrapper">
-        <section className="menu-section">
-          <div className="menu-description">
-            <h2>Browse our menu</h2>
-            <p>
-              Use our menu to place an order online, or
-              <span className="tooltip">
-                phone
-                <span className="tooltip-text">+370(677)71-4851</span>
-              </span>
-              our store to place a pickup order. Fast and fresh food.
-            </p>
-          </div>
+  if (loading) return <p>Loading menu...</p>;
+  if (error) return <p>Failed to load menu items.</p>;
 
-          <div className="menu-buttons">
-            {categories.map((cat) => (
-              <Button key={cat}>{cat}</Button>
-            ))}
-          </div>
+  return (
+    <div className="menu-wrapper">
+      <section className="menu-section">
+        <div className="menu-description">
+          <h2>Browse our menu</h2>
+          <p>
+            Use our menu to place an order online, or
+            <span className="tooltip">
+              phone
+              <span className="tooltip-text">+370(677)71-4851</span>
+            </span>
+            our store to place a pickup order. Fast and fresh food.
+          </p>
+        </div>
 
-          <ItemList
-            items={menuItems.slice(0, visibleItems)}
-            addItem={addItem}
-          />
-
-          {visibleItems < menuItems.length && (
-            <Button variant="see-more" onClick={this.handleSeeMore}>
-              See more
+        <div className="menu-buttons">
+          {categories.map((cat) => (
+            <Button
+              key={cat}
+              onClick={() => handleFilterChange(cat)}
+              className={filteredCategory === cat ? 'active' : ''}
+            >
+              {cat}
             </Button>
-          )}
-        </section>
-      </div>
-    );
-  }
-}
+          ))}
+        </div>
+
+        <ItemList
+          items={filteredItems.slice(0, visibleItems)}
+          addItem={addItem}
+        />
+
+        {visibleItems < filteredItems.length && (
+          <Button variant="see-more" onClick={handleSeeMore}>
+            See more
+          </Button>
+        )}
+      </section>
+    </div>
+  );
+};
