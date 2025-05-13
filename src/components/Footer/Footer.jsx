@@ -54,7 +54,6 @@ export const Footer = () => {
             </div>
           ))}
         </div>
-      </div>
 
       <div className="footer-bottom">
         <p>
@@ -65,7 +64,6 @@ export const Footer = () => {
           <a href="#"><TwitterIcon className="social-icon" /></a>
           <a href="#"><YoutubeIcon className="social-icon" /></a>
         </div>
-      </div>
-    </footer>
-  );
-};
+      </footer>
+    );
+  }

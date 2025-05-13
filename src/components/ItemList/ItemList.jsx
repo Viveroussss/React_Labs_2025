@@ -27,6 +27,7 @@ export const ItemList = ({ items, addItem }) => {
             <div className="title-row">
               <h4>{meal}</h4>
               <span>${price}</span>
+
             </div>
             <p className="card-description">{instructions}</p>
             <form
@@ -44,8 +45,7 @@ export const ItemList = ({ items, addItem }) => {
               </Button>
             </form>
           </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+        ))}
+      </div>
+    );
+  };
