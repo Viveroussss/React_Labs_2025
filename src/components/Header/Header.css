@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   z-index: 2;
 
   &::after {
@@ -23,44 +24,84 @@
     display: none;
   }
 
-  .logo-container {
-    margin-right: auto;
-
-    &.logo-icon {
-      font-size: 24px;
-      color: #35b8be;
-
-      img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-    }
+  @media (max-width: 1024px) {
+    padding: 20px 60px;
   }
 
-  .header-content {
+  @media (max-width: 768px) {
+    padding: 16px 32px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 16px;
+  }
+}
+
+.logo-container {
+  margin-right: auto;
+
+  &.logo-icon {
+    font-size: 24px;
+    color: #35b8be;
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 75px;
+  flex-wrap: wrap;
+
+  @media (max-width: 1024px) {
+    gap: 40px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 12px;
+  }
+
+  .nav-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 75px;
+    gap: 24px;
+    flex-wrap: wrap;
 
-    .nav-list {
-      display: flex;
-      gap: 24px;
+    .nav-link {
+      text-decoration: none;
+      color: #28224b;
+      font-weight: 400;
+      font-size: 0.94rem;
+      line-height: 20px;
+      padding: 20px 16px;
+      transition: color 0.3s ease;
 
-      .nav-link {
-        text-decoration: none;
-        color: #28224b;
-        font-weight: 400;
-        font-size: 0.94rem;
-        line-height: 20px;
-        padding: 20px 16px;
-        transition: color 0.3s ease;
+      &:hover,
+      &.active {
+        color: #35b8be;
+      }
 
-        &:hover,
-        &.active {
-          color: #35b8be;
-        }
+      @media (max-width: 1024px) {
+        font-size: 0.9rem;
+        padding: 16px 12px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 0.86rem;
+        padding: 12px 8px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 0.8rem;
+        padding: 10px 6px;
       }
     }
   }

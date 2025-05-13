@@ -11,6 +11,23 @@ const Hero = styled.section`
   background-image: url(${BGShape});
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+
+  @media (max-width: 1200px) {
+    padding: 80px 90px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 80px 60px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 30px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 15px;
+  }
 `;
 
 const HeroContainer = styled.div`
@@ -19,10 +36,23 @@ const HeroContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
+  }
+
+  @media (max-width: 480px) {
+    justify-content: center;
+    gap: 15px;
   }
 `;
 
@@ -42,8 +72,19 @@ const HeroText = styled.div`
       color: #35B8BE;
     }
 
+    @media (max-width: 1200px) {
+      font-size: 3rem;
+      line-height: 50px;
+    }
+
     @media (max-width: 768px) {
+      font-size: 2.5rem;
+      line-height: 45px;
+    }
+
+    @media (max-width: 480px) {
       font-size: 2rem;
+      line-height: 35px;
     }
   }
 
@@ -54,6 +95,20 @@ const HeroText = styled.div`
     max-width: 470px;
     letter-spacing: 0.36px;
     margin-bottom: 53px;
+
+    @media (max-width: 1200px) {
+      max-width: 90%;
+    }
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
   }
 `;
 
@@ -75,6 +130,21 @@ const Button = styled.button`
   &:hover {
     background-color: #2abfbd;
   }
+
+  @media (max-width: 1200px) {
+    padding: 15px 25px;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px 25px;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
 `;
 
 const Trustpilot = styled.div`
@@ -84,6 +154,8 @@ const Trustpilot = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   a {
     color: #35B8BE;
@@ -94,12 +166,45 @@ const Trustpilot = styled.div`
   p {
     margin: 0;
   }
+
+  @media (min-width: 768px) {
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+
+  @media (max-width: 480px) {
+    margin-top: 15px;
+  }
 `;
 
 const HeroImage = styled.div`
   flex: 1;
   position: relative;
   min-width: 300px;
+  display: flex;
+  justify-content: center;
+
+  svg, img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 650px) {
+    svg, img {
+      width: 90%;
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    svg, img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
 `;
 
 export const HeroSection = () => (
