@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { HeroImg, TrustIcon } from '../../assets/icons/icons';
 import BGShape from '../../assets/BGShape.png';
@@ -198,29 +198,24 @@ const HeroImage = styled.div`
       max-width: 400px;
     }
   }
-
-  @media (max-width: 480px) {
-    svg, img {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
 `;
 
-export const HeroSection = () => (
+export const HeroSection: FC = () => (
   <Hero>
     <HeroContainer>
       <HeroText>
         <h1>
-          Beautiful food & takeaway, <span>delivered</span> to your door.
+          Beautiful food & takeaway, <span>delivered</span> to your doorstep.
         </h1>
-        <Description>
+        <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
-        </Description>
+        </p>
         <Button>Place an Order</Button>
         <Trustpilot>
           <TrustIcon />
-          <p className='reviews-text'><a href="#">4.8 out of 5</a> based on 2000+ reviews</p>
+          <p>
+            <strong>4.8 out of 5</strong> based on 2000+ reviews
+          </p>
         </Trustpilot>
       </HeroText>
       <HeroImage>
@@ -228,4 +223,4 @@ export const HeroSection = () => (
       </HeroImage>
     </HeroContainer>
   </Hero>
-);
+); 

@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import { FC, useState, FormEvent, ChangeEvent } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import "./LoginForm.css";
 
-export const LoginForm = () => {
-  const [email, setEmail] = useState(""); 
+export const LoginForm: FC = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
     try {
@@ -23,6 +23,14 @@ export const LoginForm = () => {
       setError("Invalid credentials. Please try again.");
       console.error(err);
     }
+  };
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   return (
@@ -38,7 +46,7 @@ export const LoginForm = () => {
               name="username"
               placeholder={showPlaceholder ? "email@example.com" : ""}
               onFocus={() => setShowPlaceholder(false)}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               required
             />
           </div>
@@ -50,7 +58,7 @@ export const LoginForm = () => {
               name="password"
               placeholder={showPlaceholder ? "*************" : ""}
               onFocus={() => setShowPlaceholder(false)}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
               required
             />
           </div>
@@ -65,4 +73,4 @@ export const LoginForm = () => {
       </div>
     </div>
   );
-};
+}; 

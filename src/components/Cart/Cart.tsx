@@ -1,8 +1,12 @@
-import React from 'react';
+import { FC } from 'react';
 import { CartIcon } from '../../assets/icons/icons';
 import './Cart.css';
 
-export const Cart = ({ cartCount }) => {
+interface CartProps {
+  cartCount: number;
+}
+
+export const Cart: FC<CartProps> = ({ cartCount }) => {
   return (
     <div className="cart">
       <button className="cart-button">
@@ -11,4 +15,4 @@ export const Cart = ({ cartCount }) => {
       <span className="cart-count">{cartCount}</span>
     </div>
   );
-};
+}; 

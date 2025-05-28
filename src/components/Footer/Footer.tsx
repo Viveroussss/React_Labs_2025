@@ -1,8 +1,18 @@
-import React from 'react';
+import { FC } from 'react';
 import './Footer.css';
 import { InstagramIcon, TwitterIcon, YoutubeIcon, LogoIcon } from '../../assets/icons/icons';
 
-const footerLinks = [
+interface FooterLink {
+  name: string;
+  href: string;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+const footerLinks: FooterSection[] = [
   {
     title: "Company",
     links: [
@@ -29,7 +39,7 @@ const footerLinks = [
   },
 ];
 
-export const Footer = () => {
+export const Footer: FC = () => {
   return (
     <footer className="site-footer">
       <div className="footer-container">
@@ -68,4 +78,4 @@ export const Footer = () => {
       </div>
     </footer>
   );
-};
+}; 

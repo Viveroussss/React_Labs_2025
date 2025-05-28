@@ -1,20 +1,33 @@
-import React, { useState } from 'react';
+import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { Button } from '../Button/Button';
 import './ItemList.css';
 
-export const ItemList = ({ items, addItem }) => {
-  const [quantities, setQuantities] = useState({});
+interface MenuItem {
+  id: string;
+  meal: string;
+  price: number;
+  img: string;
+  instructions: string;
+}
 
-  const handleQuantityChange = (id, value) => {
+interface ItemListProps {
+  items: MenuItem[];
+  addItem: (item: Omit<MenuItem, 'img' | 'instructions'>, quantity: number) => void;
+}
+
+export const ItemList: FC<ItemListProps> = ({ items, addItem }) => {
+  const [quantities, setQuantities] = useState<Record<string, string>>({});
+
+  const handleQuantityChange = (id: string, value: string) => {
     setQuantities((prev) => ({
       ...prev,
       [id]: value,
     }));
   };
 
-  const handleSubmit = (e, item) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>, item: Omit<MenuItem, 'img' | 'instructions'>) => {
     e.preventDefault();
-    const quantity = parseInt(quantities[item.id] || 1, 10);
+    const quantity = parseInt(quantities[item.id] || '1', 10);
     addItem(item, quantity);
   };
 
@@ -38,11 +51,11 @@ export const ItemList = ({ items, addItem }) => {
                 name={`quantity-${id}`}
                 type="number"
                 min="1"
-                value={quantities[id] || 1}
-                onChange={(e) => handleQuantityChange(id, e.target.value)}
+                value={quantities[id] || '1'}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => handleQuantityChange(id, e.target.value)}
                 autoComplete="off"
               />
-              <Button variant="add" type="submit">
+              <Button variant="primary" type="submit">
                 Add to cart
               </Button>
             </form>
@@ -51,4 +64,4 @@ export const ItemList = ({ items, addItem }) => {
       ))}
     </div>
   );
-};
+}; 

@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { MenuContent } from '../../components/MenuContent/MenuContent';
 
-export const MenuPage = () => {
-  const [cartItems, setCartItems] = useState([]);
+interface CartItem {
+  id: string;
+  meal: string;
+  price: number;
+  quantity: number;
+}
 
-  const addItem = (item, quantity = 1) => {
+export const MenuPage: FC = () => {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const addItem = (item: Omit<CartItem, 'quantity'>, quantity = 1) => {
     setCartItems((prevCartItems) => {
       const existingItem = prevCartItems.find(
         (cartItem) => cartItem.id === item.id
       );
 
       if (existingItem) {
-        return prevCartItems.map((cartItem) =>
+        const updatedItems = prevCartItems.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + quantity }
             : cartItem
         );
+        console.log('Updated cart items (existing item):', updatedItems);
+        return updatedItems;
       } else {
-        return [...prevCartItems, { ...item, quantity }];
+        const newItems = [...prevCartItems, { ...item, quantity }];
+        return newItems;
       }
     });
   };
@@ -33,8 +43,8 @@ export const MenuPage = () => {
   return (
     <div>
       <Header cartCount={cartCount} />
-      <MenuContent cartItems={cartItems} addItem={addItem} />
+      <MenuContent addItem={addItem} />
       <Footer />
     </div>
   );
-};
+}; 

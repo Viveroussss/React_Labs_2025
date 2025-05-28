@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 
-export const LoginPage = () => {
+export const LoginPage: FC = () => {
   return (
     <div>
       <Header cartCount={0} />
@@ -11,4 +11,4 @@ export const LoginPage = () => {
       <Footer />
     </div>
   );
-};
+}; 

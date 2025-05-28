@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { FC, useState, useMemo } from 'react';
 import './MenuContent.css';
 import { Button } from '../Button/Button';
 import { ItemList } from '../ItemList/ItemList';
@@ -8,16 +8,29 @@ const DEFAULT_CATEGORY = 'Dessert';
 const INITIAL_VISIBLE_ITEMS = 6;
 const VISIBLE_ITEMS_INCREMENT = 6;
 
-export const MenuContent = ({ addItem }) => {
+interface MenuItem {
+  id: string;
+  meal: string;
+  price: number;
+  img: string;
+  instructions: string;
+  category: string;
+}
+
+interface MenuContentProps {
+  addItem: (item: Omit<MenuItem, 'img' | 'instructions' | 'category'>, quantity: number) => void;
+}
+
+export const MenuContent: FC<MenuContentProps> = ({ addItem }) => {
   const [filteredCategory, setFilteredCategory] = useState(DEFAULT_CATEGORY);
   const [visibleItems, setVisibleItems] = useState(INITIAL_VISIBLE_ITEMS);
-  const { data: menuItems, loading, error } = useFetch('https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals');
+  const { data: menuItems, loading, error } = useFetch<MenuItem[]>('https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals');
 
   const handleSeeMore = () => {
     setVisibleItems((prev) => prev + VISIBLE_ITEMS_INCREMENT);
   };
 
-  const handleFilterChange = (category) => {
+  const handleFilterChange = (category: string) => {
     setFilteredCategory(category);
     setVisibleItems(INITIAL_VISIBLE_ITEMS);
   };
@@ -58,11 +71,11 @@ export const MenuContent = ({ addItem }) => {
         <ItemList items={filteredItems.slice(0, visibleItems)} addItem={addItem} />
 
         {visibleItems < filteredItems.length && (
-          <Button variant="see-more" onClick={handleSeeMore}>
+          <Button className="see-more" onClick={handleSeeMore}>
             See more
           </Button>
         )}
       </section>
     </div>
   );
-};
+}; 

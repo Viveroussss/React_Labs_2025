@@ -15,7 +15,7 @@
       border-color: transparent;
     }
   
-    &.add {
+    &.primary {
       padding: 9px 27px;
       border-radius: 6px;
       background-color: #35b8be;
