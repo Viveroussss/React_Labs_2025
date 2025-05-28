@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { LoginPage } from './pages/LoginPage/LoginPage';
-import { MenuPage } from './pages/MenuPage/MenuPage';
+import { HomePage } from './pages/HomePage/HomePage';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
@@ -10,7 +10,7 @@ const App: FC = () => {
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<ProtectedRoute element={<MenuPage />} />} />
+        <Route path="/" element={<ProtectedRoute element={<HomePage />} />} />
       </Routes>
     </AuthProvider>
   );

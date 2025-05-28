@@ -207,9 +207,9 @@ export const HeroSection: FC = () => (
         <h1>
           Beautiful food & takeaway, <span>delivered</span> to your doorstep.
         </h1>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
-        </p>
+        <Description>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
+        </Description>
         <Button>Place an Order</Button>
         <Trustpilot>
           <TrustIcon />
