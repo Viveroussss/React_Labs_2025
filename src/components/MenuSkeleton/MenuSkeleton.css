@@ -1,0 +1,67 @@
+.skeleton-image-container {
+  display: block;
+  overflow: hidden;
+}
+
+.skeleton-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-text-container .react-loading-skeleton {
+  height: 16px;
+  line-height: 1.5;
+}
+
+.item-card .react-loading-skeleton {
+  border-radius: 4px;
+}
+
+.item-card .title-row .react-loading-skeleton {
+  height: 24px;
+}
+
+.item-card .order-row .react-loading-skeleton {
+  height: 44px;
+}
+
+.menu-buttons .react-loading-skeleton {
+  border-radius: 6px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.item-card {
+  display: flex;
+  padding: 27px 26px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item-card .card-info {
+  flex: 1;
+  padding-left: 30px;
+}
+
+.item-card .title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 13px;
+}
+
+.item-card .order-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+} 
