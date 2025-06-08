@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HeroImg, TrustIcon } from '../../assets/icons/icons';
 import BGShape from '../../assets/BGShape.png';
@@ -200,27 +201,35 @@ const HeroImage = styled.div`
   }
 `;
 
-export const HeroSection: FC = () => (
-  <Hero>
-    <HeroContainer>
-      <HeroText>
-        <h1>
-          Beautiful food & takeaway, <span>delivered</span> to your doorstep.
-        </h1>
-        <Description>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
-        </Description>
-        <Button>Place an Order</Button>
-        <Trustpilot>
-          <TrustIcon />
-          <p>
-            <strong>4.8 out of 5</strong> based on 2000+ reviews
-          </p>
-        </Trustpilot>
-      </HeroText>
-      <HeroImage>
-        <HeroImg />
-      </HeroImage>
-    </HeroContainer>
-  </Hero>
-); 
+export const HeroSection: FC = () => {
+  const navigate = useNavigate();
+
+  const handleOrderClick = () => {
+    navigate('/menu');
+  };
+
+  return (
+    <Hero>
+      <HeroContainer>
+        <HeroText>
+          <h1>
+            Beautiful food & takeaway, <span>delivered</span> to your doorstep.
+          </h1>
+          <Description>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500.
+          </Description>
+          <Button onClick={handleOrderClick}>Place an Order</Button>
+          <Trustpilot>
+            <TrustIcon />
+            <p>
+              <strong>4.8 out of 5</strong> based on 2000+ reviews
+            </p>
+          </Trustpilot>
+        </HeroText>
+        <HeroImage>
+          <HeroImg />
+        </HeroImage>
+      </HeroContainer>
+    </Hero>
+  );
+}; 

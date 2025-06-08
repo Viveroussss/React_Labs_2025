@@ -83,6 +83,9 @@
       line-height: 20px;
       padding: 20px 16px;
       transition: color 0.3s ease;
+      background: none;
+      border: none;
+      cursor: pointer;
 
       &:hover,
       &.active {
