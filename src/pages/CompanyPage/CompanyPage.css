@@ -1,0 +1,41 @@
+.company-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.company-image-container {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.company-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.company-info {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.company-info h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.company-info p {
+  color: #666;
+  line-height: 1.6;
+} 
