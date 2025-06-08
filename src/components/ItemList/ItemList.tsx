@@ -1,18 +1,11 @@
 import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { Button } from '../Button/Button';
 import './ItemList.css';
-
-interface MenuItem {
-  id: string;
-  meal: string;
-  price: number;
-  img: string;
-  instructions: string;
-}
+import { MenuItem } from '../../store/menuSlice';
 
 interface ItemListProps {
   items: MenuItem[];
-  addItem: (item: Omit<MenuItem, 'img' | 'instructions'>, quantity: number) => void;
+  addItem: (item: Omit<MenuItem, 'description' | 'category'>, quantity: number) => void;
 }
 
 export const ItemList: FC<ItemListProps> = ({ items, addItem }) => {
@@ -25,26 +18,26 @@ export const ItemList: FC<ItemListProps> = ({ items, addItem }) => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>, item: Omit<MenuItem, 'img' | 'instructions'>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>, item: MenuItem) => {
     e.preventDefault();
     const quantity = parseInt(quantities[item.id] || '1', 10);
-    addItem(item, quantity);
+    addItem({ id: item.id, name: item.name, price: item.price, image: item.image }, quantity);
   };
 
   return (
     <div className="menu-grid">
-      {items.map(({ id, meal, price, img, instructions }) => (
+      {items.map(({ id, name, price, image, description }) => (
         <div className="menu-card" key={id}>
-          <img src={img} alt={meal} />
+          <img src={image} alt={name} />
           <div className="card-info">
             <div className="title-row">
-              <h4>{meal}</h4>
+              <h4>{name}</h4>
               <span>${price}</span>
             </div>
-            <p className="card-description">{instructions}</p>
+            <p className="card-description">{description}</p>
             <form
               className="order-row"
-              onSubmit={(e) => handleSubmit(e, { id, meal, price })}
+              onSubmit={(e) => handleSubmit(e, { id, name, price, image, description, category: '' })}
             >
               <input
                 id={`quantity-${id}`}

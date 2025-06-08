@@ -1,16 +1,21 @@
-import { FC, ReactElement } from 'react';
+import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAppSelector } from '../../store/hooks';
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 
 interface ProtectedRouteProps {
-  element: ReactElement;
+  element: React.ReactElement;
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ element }) => {
-  const { user } = useAuth();
-  
+  const { user, loading } = useAppSelector((state) => state.auth);
+
+  if (loading) {
+    return <LoadingSpinner fullScreen size="large" />;
+  }
+
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
 
   return element;

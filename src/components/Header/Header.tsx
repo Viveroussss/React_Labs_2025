@@ -1,30 +1,73 @@
-import { FC, MouseEvent } from 'react';
+import { FC } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase/config';
+import { useAppSelector } from '../../store/hooks';
 import './Header.css';
 import { Cart } from '../Cart/Cart';
 import { LogoIcon } from '../../assets/icons/icons';
 
 interface HeaderProps {
-  cartCount: number;
   showSkewBackground?: boolean;
 }
 
-export const Header: FC<HeaderProps> = ({ cartCount, showSkewBackground = true }) => {
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+export const Header: FC<HeaderProps> = ({ showSkewBackground = true }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { user } = useAppSelector((state) => state.auth);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
   };
 
   return (
     <header className={`header-container${!showSkewBackground ? ' no-skew' : ''}`}>
-      <LogoIcon className="logo-container logo-icon" />
+      <Link to="/" className="logo-container">
+        <LogoIcon className="logo-icon" />
+      </Link>
 
       <div className="header-content">
         <nav className="nav-list">
-          <a href="#" className="nav-link" onClick={handleClick}>Home</a>
-          <a href="#" className="nav-link" onClick={handleClick}>Menu</a>
-          <a href="#" className="nav-link" onClick={handleClick}>Company</a>
-          <a href="#" className="nav-link" onClick={handleClick}>Login</a>
+          <Link 
+            to="/" 
+            className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/menu" 
+            className={`nav-link ${location.pathname === '/menu' ? 'active' : ''}`}
+          >
+            Menu
+          </Link>
+          <Link 
+            to="/company" 
+            className={`nav-link ${location.pathname === '/company' ? 'active' : ''}`}
+          >
+            Company
+          </Link>
+          {user ? (
+            <button 
+              onClick={handleSignOut}
+              className="nav-link sign-out-btn"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link 
+              to="/login" 
+              className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`}
+            >
+              Login
+            </Link>
+          )}
         </nav>
-        <Cart cartCount={cartCount} />
+        <Cart />
       </div>
     </header>
   );
