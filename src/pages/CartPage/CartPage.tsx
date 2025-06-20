@@ -1,8 +1,7 @@
 import { FC, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { removeItem, updateQuantity, clearCart } from '../../store/cartSlice';
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
+import { Header, Footer } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import './CartPage.css';
 

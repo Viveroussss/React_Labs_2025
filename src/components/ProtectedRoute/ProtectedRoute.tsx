@@ -1,13 +1,9 @@
 import { FC } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks';
-import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
+import { LoadingSpinner } from '../../components';
 
-interface ProtectedRouteProps {
-  element: React.ReactElement;
-}
-
-const ProtectedRoute: FC<ProtectedRouteProps> = ({ element }) => {
+const ProtectedRoute: FC = () => {
   const { user, loading } = useAppSelector((state) => state.auth);
 
   if (loading) {
@@ -18,7 +14,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ element }) => {
     return <Navigate to="/login" replace />;
   }
 
-  return element;
+  return <Outlet />;
 };
 
 export default ProtectedRoute; 

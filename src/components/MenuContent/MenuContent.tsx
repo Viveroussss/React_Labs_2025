@@ -1,8 +1,6 @@
 import { FC, useState, useMemo, useEffect } from 'react';
 import './MenuContent.css';
-import { Button } from '../Button/Button';
-import { ItemList } from '../ItemList/ItemList';
-import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
+import { Button, ItemList, LoadingSpinner } from '../../components';
 import useFetch from '../../hooks/useFetch';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setItems, setLoading, setError, setSelectedCategory } from '../../store/menuSlice';

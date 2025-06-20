@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
-import { MenuContent } from '../../components/MenuContent/MenuContent';
+import { Header, Footer, MenuContent } from '../../components';
 import { useAppDispatch } from '../../store/hooks';
 import { addItem } from '../../store/cartSlice';
-import { CartItem } from '../../store/cartSlice';
+import type { CartItem } from '../../store/cartSlice';
+
+type CartItemInput = Omit<Pick<CartItem, 'id' | 'name' | 'price' | 'image' | 'quantity'>, 'quantity'>;
 
 export const MenuPage: FC = () => {
   const dispatch = useAppDispatch();
 
-  const handleAddItem = (item: Omit<CartItem, 'quantity'>, quantity = 1) => {
+  const handleAddItem = (item: CartItemInput, quantity = 1) => {
     dispatch(addItem({ ...item, quantity }));
   };
 

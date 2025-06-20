@@ -28,10 +28,12 @@ const App: FC = () => {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/" element={<ProtectedRoute element={<HomePage />} />} />
-      <Route path="/menu" element={<ProtectedRoute element={<MenuPage />} />} />
-      <Route path="/cart" element={<ProtectedRoute element={<CartPage />} />} />
-      <Route path="/company" element={<ProtectedRoute element={<CompanyPage />} />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/menu" element={<MenuPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/company" element={<CompanyPage />} />
+      </Route>
     </Routes>
   );
 };

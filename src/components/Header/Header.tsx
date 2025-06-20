@@ -4,7 +4,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 import { useAppSelector } from '../../store/hooks';
 import './Header.css';
-import { Cart } from '../Cart/Cart';
+import { Cart } from '../../components';
 import { LogoIcon } from '../../assets/icons/icons';
 
 interface HeaderProps {

@@ -1,5 +1,5 @@
 import { FC, useState, FormEvent, ChangeEvent } from 'react';
-import { Button } from '../Button/Button';
+import { Button } from '../../components';
 import './ItemList.css';
 import { MenuItem } from '../../store/menuSlice';
 
