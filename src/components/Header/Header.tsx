@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/config';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store';
 import './Header.css';
 import { Cart } from '../../components';
 import { LogoIcon } from '../../assets/icons/icons';
