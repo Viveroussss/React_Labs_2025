@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartIcon } from '../../assets/icons/icons';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store';
 import './Cart.css';
 
 export const Cart: FC = () => {

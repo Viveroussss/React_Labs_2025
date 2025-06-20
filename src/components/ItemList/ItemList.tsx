@@ -1,7 +1,7 @@
 import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { Button } from '../../components';
 import './ItemList.css';
-import { MenuItem } from '../../store/menuSlice';
+import { MenuItem } from '../../store';
 
 interface ItemListProps {
   items: MenuItem[];

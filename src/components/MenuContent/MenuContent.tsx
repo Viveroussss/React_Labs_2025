@@ -1,10 +1,8 @@
 import { FC, useState, useMemo, useEffect } from 'react';
 import './MenuContent.css';
 import { Button, ItemList, LoadingSpinner } from '../../components';
-import useFetch from '../../hooks/useFetch';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setItems, setLoading, setError, setSelectedCategory } from '../../store/menuSlice';
-import { MenuItem } from '../../store/menuSlice';
+import useFetch from '../../hooks';
+import { useAppDispatch, useAppSelector, setItems, setMenuLoading, setError, setSelectedCategory, MenuItem } from '../../store';
 import MenuSkeleton from '../MenuSkeleton/MenuSkeleton';
 
 const INITIAL_VISIBLE_ITEMS = 6;
@@ -34,9 +32,9 @@ export const MenuContent: FC<MenuContentProps> = ({ addItem }) => {
 
   useEffect(() => {
     if (apiLoading) {
-      dispatch(setLoading(true));
+      dispatch(setMenuLoading(true));
     } else {
-      dispatch(setLoading(false));
+      dispatch(setMenuLoading(false));
     }
 
     if (apiError) {
