@@ -5,7 +5,7 @@ import { HeroImg, TrustIcon } from '../../assets/icons/icons';
 import BGShape from '../../assets/BGShape.png';
 
 const Hero = styled.section`
-  background-color: #ffffff;
+  background-color: var(--color-header-bg);
   padding: 100px 120px 140px;
   display: flex;
   justify-content: center;
@@ -13,6 +13,10 @@ const Hero = styled.section`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+
+  [data-theme='dark'] & {
+    background-image: none;
+  }
 
   @media (max-width: 1200px) {
     padding: 80px 90px;
@@ -65,12 +69,12 @@ const HeroText = styled.div`
   h1 {
     font-size: 3.76rem;
     line-height: 60px;
-    color: #08090a;
+    color: var(--color-text);
     font-weight: 400;
     letter-spacing: 1.8px;
 
     span {
-      color: #35B8BE;
+      color: var(--color-primary);
     }
 
     @media (max-width: 1200px) {
@@ -92,7 +96,7 @@ const HeroText = styled.div`
   p {
     font-size: 1.14rem;
     line-height: 24px;
-    color: #546285;
+    color: var(--color-text);
     max-width: 470px;
     letter-spacing: 0.36px;
     margin-bottom: 53px;
@@ -118,7 +122,7 @@ const Description = styled.p`
 `;
 
 const Button = styled.button`
-  background-color: #35B8BE;
+  background-color: var(--color-primary);
   color: white;
   padding: 20px 35px;
   border: none;
@@ -151,7 +155,7 @@ const Button = styled.button`
 const Trustpilot = styled.div`
   margin-top: 30px;
   font-size: 0.94rem;
-  color: #546285;
+  color: var(--color-text);
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -159,7 +163,7 @@ const Trustpilot = styled.div`
   justify-content: center;
 
   a {
-    color: #35B8BE;
+    color: var(--color-primary);
     font-weight: 500;
     text-decoration: none;
   }

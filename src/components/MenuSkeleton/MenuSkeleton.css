@@ -12,6 +12,7 @@
 .skeleton-text-container .react-loading-skeleton {
   height: 16px;
   line-height: 1.5;
+  background: var(--color-header-bg);
 }
 
 .item-card .react-loading-skeleton {
@@ -42,7 +43,7 @@
 .item-card {
   display: flex;
   padding: 27px 26px;
-  background: #fff;
+  background: var(--color-header-bg);
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -64,4 +65,9 @@
   gap: 8px;
   align-items: center;
   margin-top: 10px;
+}
+
+[data-theme='dark'] .react-loading-skeleton {
+  background: #353545 !important;
+  --base-color: #353545; --highlight-color: #44445a;
 } 
