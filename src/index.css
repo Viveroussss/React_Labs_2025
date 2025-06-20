@@ -10,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #08090a;
   line-height: 1.5;
+  background: var(--color-bg);
 }
 
 a {
@@ -31,4 +32,20 @@ ul, ol {
 img {
   max-width: 100%;
   height: auto;
+}
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #28224b;
+  --color-primary: #35b8be;
+  --color-header-bg: #ffffff;
+  --color-header-text: #28224b;
+}
+
+[data-theme='dark'] {
+  --color-bg: #181824;
+  --color-text: #f3f3f3;
+  --color-primary: #35b8be;
+  --color-header-bg: #232336;
+  --color-header-text: #f3f3f3;
 }

@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { removeItem, updateQuantity, clearCart } from '../../store/cartSlice';
+import { useAppSelector, useAppDispatch, removeItem, updateQuantity, clearCart } from '../../store';
 import { Header, Footer } from '../../components';
 import { useNavigate } from 'react-router-dom';
 import './CartPage.css';

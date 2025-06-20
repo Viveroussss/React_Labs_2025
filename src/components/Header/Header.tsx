@@ -2,10 +2,11 @@ import { FC } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/config';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store';
 import './Header.css';
 import { Cart } from '../../components';
 import { LogoIcon } from '../../assets/icons/icons';
+import { useTheme } from '../../theme/ThemeContext';
 
 interface HeaderProps {
   showSkewBackground?: boolean;
@@ -15,6 +16,7 @@ export const Header: FC<HeaderProps> = ({ showSkewBackground = true }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
+  const { theme, toggleTheme } = useTheme();
 
   const handleSignOut = async () => {
     try {
@@ -67,6 +69,9 @@ export const Header: FC<HeaderProps> = ({ showSkewBackground = true }) => {
             </Link>
           )}
         </nav>
+        <button onClick={toggleTheme} className="theme-switch-btn">
+          {theme === 'dark' ? '🌙 Dark' : '☀️ Light'}
+        </button>
         <Cart />
       </div>
     </header>

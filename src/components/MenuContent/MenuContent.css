@@ -1,9 +1,9 @@
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f5fafa;
+  background-color: var(--color-bg);
   margin: 0;
   padding: 0;
-  color: #546285;
+  color: var(--color-text);
 }
 
 .menu-wrapper {
@@ -16,7 +16,7 @@ body {
 
     h2 {
       font-size: 3.12rem;
-      color: #35B8BE;
+      color: var(--color-primary);
       margin-bottom: 26px;
       line-height: 55px;
       letter-spacing: 1.65px;
@@ -24,7 +24,7 @@ body {
     }
 
     p {
-      color: #666;
+      color: var(--color-text);
       font-size: 1rem;
       line-height: 27px;
       letter-spacing: 0.36px;
@@ -32,7 +32,7 @@ body {
 
       .tooltip {
         position: relative;
-        color: #2abfbd;
+        color: var(--color-primary);
         font-weight: 500;
         cursor: pointer;
         margin: 0 4px;
@@ -40,8 +40,8 @@ body {
         .tooltip-text {
           visibility: hidden;
           width: max-content;
-          background-color: #333;
-          color: #fff;
+          background-color: var(--color-header-bg);
+          color: var(--color-text);
           padding: 6px 10px;
           border-radius: 6px;
           position: absolute;
@@ -87,7 +87,7 @@ body {
       margin: 0 auto;
 
       .menu-card {
-        background: white;
+        background: var(--color-header-bg);
         border-radius: 6px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         overflow: hidden;
@@ -115,18 +115,18 @@ body {
               margin: 0;
               font-weight: normal;
               font-size: 1.1rem;
-              color: #08090a;
+              color: var(--color-text);
             }
 
             span {
-              color: #35b8be;
+              color: var(--color-primary);
               font-size: 0.94rem;
             }
           }
 
           p {
             font-size: 1rem;
-            color: #546285;
+            color: var(--color-text);
             margin: 13px 0 10px;
           }
 
@@ -141,6 +141,8 @@ body {
               border: 1px solid #ccc;
               border-radius: 6px;
               text-align: center;
+              background: var(--color-header-bg);
+              color: var(--color-text);
             }
           }
         }
@@ -187,7 +189,7 @@ body {
 
 .no-items-message {
   text-align: center;
-  color: #546285;
+  color: var(--color-text);
   font-size: 1.1rem;
   margin: 40px 0;
 }
@@ -198,7 +200,7 @@ body {
   font-size: 1.1rem;
   margin: 40px 0;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--color-header-bg);
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }

@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Header, Footer, MenuContent } from '../../components';
-import { useAppDispatch } from '../../store/hooks';
-import { addItem } from '../../store/cartSlice';
+import { useAppDispatch, addItem } from '../../store';
 import type { CartItem } from '../../store/cartSlice';
 
 type CartItemInput = Omit<Pick<CartItem, 'id' | 'name' | 'price' | 'image' | 'quantity'>, 'quantity'>;
